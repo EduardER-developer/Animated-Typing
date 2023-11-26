@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Animated typing | for Eduard</title>
+</head>
+<body>
+    
+<div class="container" ng-app="textAnimateApp" ng-controller="textAnimateCtrl"> 
+      <div class="header">
+        <h1>Angular Text Animation</h1>
+        <hr>
+      </div>
+    
+      <p>Please enter some text to be animated</p>
+      <input type="text" ng-model="myText" class="text-input" ng-change="updateText()">
+    
+      <div class="text-options">
+        <span class="option">        
+          <label for="select-text-style" title="Select Text Style">Style</label>       
+          <select id="select-text-style" 
+                  ng-model="textStyle" 
+                  ng-options="option.name for option in styles">
+          </select>        
+        </span>
+    
+        <!--     text animation option -->
+        <span class="option">
+          <label for="select-text-animation" title="Select Animation Type">Animation</label>
+          <select id="select-text-animation" 
+                  ng-model="textAnimation" 
+                  ng-options="option.name for option in animations">
+          </select>
+        </span>
+      </div>
+    
+      <div class="text-display">
+        <p class="text-empty" ng-show="letters.length === 0" >Please type something in the box!</p>
+        <span ng-repeat="letter in letters track by $index" ng-class="['animated', textAnimation.style, textStyle.style, { space: checkSpace(letter) } ]">{{ letter }}</span>
+      </div>
+    </div>
+    
+
+    <script src="script.js"></script>
+</body>
+</html>
